@@ -1,6 +1,12 @@
 # ProjetADE-Raspberry
 ## Contenu
-* Installation et mise en place (#installation-de-python-et-pip)
+* [Installation et mise en place](#installation-de-python-et-pip)
+
+---
+| :warning: Attention           |
+|:----------------------------|
+| La section suivante concerne le Raspberry Pi   |
+---
 
 ## Installation de python et pip
 
