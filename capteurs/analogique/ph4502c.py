@@ -19,7 +19,7 @@ class Ph4502c(CapteurAnalogiqueParent):
         time.sleep(1)
         
         # equation 
-        voltage_actuel = self._controleur_adc.lire_voltage(self._pin_analogique)
+        voltage_actuel = self._controleur_adc.lire_voltage(self._pin)
         ph_obtenu = self._valeur_ph_neutre  + ((self._valeur_voltage_neutre - voltage_actuel)/abs(self._marge))
 
         # ajouter aux données
