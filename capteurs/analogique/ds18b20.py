@@ -3,14 +3,21 @@ from w1thermsensor import W1ThermSensor
 
 from capteurs.capteurs_parent import CapteursParent
 
-# Attention !!! Le capteur doit etre bracnhe au pin 4
-# installer: pip install w1thermsensor --break-system-packages
-# ou : sudo apt-get install python3-w1thermsensor
-# ensuite allez dans terminal et faites: sudo nano /boot/firmware/config.txt
-# allez dans la phrase "dtoverlay=w1-gpio" et de-commenter la 
-# reboot le system
-
 class DS18B20(CapteursParent):
+    """
+    Class pour calculer la température    
+    
+    ATTENTION !!! Le capteur doit être branché sur le pin 4 et :
+    
+    - Installation :
+        pip install w1thermsensor --break-system-packages
+        ou :
+        sudo apt-get install python3-w1thermsensor
+    - Configuration :
+        1. Ouvrir le terminal et exécuter : sudo nano /boot/firmware/config.txt
+        2. Trouver la ligne "dtoverlay=w1-gpio" et la décommenter
+        3. Redémarrer le système
+    """
     def __init__(self):
         super().__init__("DS18B20", {}, 4)
         self._capteur = W1ThermSensor()
