@@ -23,6 +23,8 @@ class CalibrerPh:
         self.__pin_analogique = pin_analogique
         self.__valeur_ph_acide = valeur_ph_acide
         self.__valeur_ph_basique = valeur_ph_basique
+        self.__valeur_ph_neutre = 7
+        self.__valeur_voltage_neutre = 2.5275
 
     def commencer(self):
         """
@@ -39,15 +41,15 @@ class CalibrerPh:
         for numero_mesure in range (0,2):
             
             print("Lavez le bout du capteur: vous avez 30 secondes")
-            time.sleep(30000)
+            time.sleep(30)
             
             if numero_mesure == 0:
-                print("Inserez d'abord dans le ph acide. La mesure commence dans 20 secondes")
+                print("Inserez d'abord dans le ph acide. La mesure commence dans 30 secondes")
                 ph_actuel = self.__valeur_ph_acide
             else:
-                print("Inserez maintenant dans le ph plus basique. La mesure commence dans 20 secondes")
+                print("Inserez maintenant dans le ph plus basique. La mesure commence dans 30 secondes")
                 ph_actuel = self.__valeur_ph_basique
-            time.sleep(20000)
+            time.sleep(30)
             
             print("Commence la prise de mesure")
             
@@ -57,20 +59,21 @@ class CalibrerPh:
         
             # Faire la moyenne en se basant sur le nombre d'échantillons souhaité,
             # en ignorant les premières valeurs, car elles peuvent fausser le résultat.
-            while compteur < self.__taille_echantillon + mesures_ignorees:
+            while compteur < self.__taille_echantillon + mesures_ignorees :
             
                 # lire le voltage
                 mesure = self.__ads1115_controleur.lire_voltage(self.__pin_analogique)
             
                 # commencer la vraie mesure
-                if compteur >= mesures_ignorees - 1 :
+                if compteur >= mesures_ignorees  :
                     print(f"mesure {len(liste_resultats)} : {mesure}")
                     liste_resultats.append(mesure)
-                    
+                else:
+                    print(compteur)
                 compteur += 1
                 
                 # attendre 3 secondes après chaque mesure
-                time.sleep(3000)
+                time.sleep(3)
         
             # la moyenne des resultats
             moyenne = sum(liste_resultats) / len(liste_resultats)
@@ -101,3 +104,17 @@ class CalibrerPh:
         pente = difference_y / difference_x
         
         return pente
+    
+    def tester_marge(self, marge: float):
+        """
+        Methode qui permet de mesurer une ph
+        """
+        time.sleep(3)
+        
+        # equation 
+        voltage_act = self.__ads1115_controleur.lire_voltage(self.__pin_analogique)
+        ph_obtenu = self.__valeur_ph_neutre  + ((self.__valeur_voltage_neutre-voltage_act)/abs(marge))
+
+        # res
+        print(f"PH: {ph_obtenu} et V: {voltage_act}")
+

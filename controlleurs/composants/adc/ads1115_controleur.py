@@ -2,7 +2,7 @@
 from controlleurs.composants.adc.pin_analogique import PinAnalogique
 import board 
 import busio
-import adafruit_ads1x15.ads1015 as ADS 
+import adafruit_ads1x15.ads1115 as ADS 
 from adafruit_ads1x15.analog_in import AnalogIn
 
 class ADS1115Controleur:    
@@ -31,7 +31,7 @@ class ADS1115Controleur:
             int: la valeur analogique du convertiseur. C'est entre 0 et 65535, car le ADC est de 16-bit
         """
         # Lecture de signale analogue au pin choisi
-        lecture_pin = AnalogIn(self.__convertiseur, pin_analogique)
+        lecture_pin = AnalogIn(self.__convertiseur, pin_analogique.value)
         
         return lecture_pin.value
     
@@ -47,7 +47,7 @@ class ADS1115Controleur:
             float: voltage
         """
         # Lecture de signale analogue au pin choisi
-        lecture_pin = AnalogIn(self.__convertiseur, pin_analogique)
+        lecture_pin = AnalogIn(self.__convertiseur, pin_analogique.value)
         
         return lecture_pin.voltage
     
