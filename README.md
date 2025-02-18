@@ -99,4 +99,4 @@ sudo apt-get install python3-w1thermsensor
    ```
 
 > [!CAUTION]
-> Le capteur doit être branché sur le pin. C'est obligatoire, sinon visitez [w1thermsensor](https://github.com/timofurrer/w1thermsensor) pour la configuration.
+> Le capteur doit être branché sur le pin GPIO 4. C'est obligatoire, sinon visitez [w1thermsensor](https://github.com/timofurrer/w1thermsensor) pour la configuration.
