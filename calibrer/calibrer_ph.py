@@ -63,11 +63,14 @@ class CalibrerPh:
                 mesure = self.__ads1115_controleur.lire_voltage(self.__pin_analogique)
             
                 # commencer la vraie mesure
-                while compteur >= mesures_ignorees:
+                if compteur >= mesures_ignorees - 1 :
                     print(f"mesure {len(liste_resultats)} : {mesure}")
                     liste_resultats.append(mesure)
                     
                 compteur += 1
+                
+                # attendre 3 secondes après chaque mesure
+                time.sleep(3000)
         
             # la moyenne des resultats
             moyenne = sum(liste_resultats) / len(liste_resultats)
