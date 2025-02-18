@@ -3,7 +3,7 @@
 * [Installation et mise en place](#installation-de-python-et-pip)
 
 ---
-| warning: Attention                              |
+| :warning: Attention                              |
 |:-----------------------------------------------:|
 | La section suivante concerne le Raspberry Pi    |
 ---
