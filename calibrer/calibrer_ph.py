@@ -88,7 +88,7 @@ class CalibrerPh:
             print(f"La marge est de {marge}")
     
     def __calculer_pente(self, x1: float, x2: float, y1: float, y2: float):
-        """_summary_
+        """
 
         Args:
             x1 (float): valeur ph acide
@@ -107,7 +107,7 @@ class CalibrerPh:
     
     def tester_marge(self, marge: float):
         """
-        Methode qui permet de mesurer une ph
+        Méthode qui permet de mesurer une ph
         """
         time.sleep(3)
         

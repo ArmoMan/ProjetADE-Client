@@ -1,0 +1,16 @@
+[
+
+
+   
+    {
+    "commande": "envoyer_donnees"
+    
+},
+{
+    "commande": "actionner",
+    "nom_capteur": "ky18"
+}
+
+
+
+]

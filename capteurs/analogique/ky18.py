@@ -15,4 +15,4 @@ class CapteurKY18(CapteurAnalogiqueParent):
         voltage = self._controleur_adc.lire_voltage(self._pin)
         resistance = self._resistance_interne * (voltage / (self._voltage_max - voltage))
         
-        self._donnees.update({"Résistance face à la lumière (Ohm)", resistance})
+        self._donnees[ "Résistance face à la lumière (Ohm)"] = resistance
