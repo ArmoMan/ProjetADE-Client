@@ -14,7 +14,7 @@ class Ph4502c(CapteurAnalogiqueParent):
         
     def mesurer_donnees(self):
         """
-        Methode qui permet de mesurer une ph
+        Méthode qui permet de mesurer un PH
         """
         time.sleep(1)
         
@@ -23,4 +23,4 @@ class Ph4502c(CapteurAnalogiqueParent):
         ph_obtenu = self._valeur_ph_neutre  + ((self._valeur_voltage_neutre - voltage_actuel)/abs(self._marge))
 
         # ajouter aux données
-        self._donnees["Ph mesuré"] = ph_obtenu
+        self._donnees["PH mesuré"] = ph_obtenu
