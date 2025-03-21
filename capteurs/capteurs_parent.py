@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 class CapteursParent(ABC):
     """
-    Class parent pour les capteurs
+    Classe parent pour les capteurs
     """
     def __init__(self, nom: str, donnees: dict, pin):
         self._nom = nom
@@ -22,6 +22,6 @@ class CapteursParent(ABC):
     @abstractmethod
     def mesurer_donnees(self):
         """
-        Mesurer les donnes et ajouter au dictionnaire
+        Mesurer les données et les ajouter au dictionnaire
         """
         pass

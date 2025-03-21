@@ -5,7 +5,7 @@ from capteurs.capteurs_parent import CapteursParent
 
 class DS18B20(CapteursParent):
     """
-    Class pour calculer la température    
+    Classe pour calculer la température    
     
     ATTENTION !!! Le capteur doit être branché sur le pin 4 et :
     
