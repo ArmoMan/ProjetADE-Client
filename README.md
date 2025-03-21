@@ -48,13 +48,13 @@ sudo pip3 install --break-system-packages adafruit-circuitpython-ads1x15
 
 ### Pour l'interface graphique il faut PyQt6
 
-**Installez [PyQt6](https://pypi.org/project/PyQt6/)** avec la [commande](https://forums.raspberrypi.com/viewtopic.php?t=369140) suivante :
+**Installez [PySide6](https://pypi.org/project/PyQt6/)** avec la [commande](https://forum.qt.io/topic/135892/insudo%20apt%20install%20python-pyqt5) suivante :
 ```
-sudo apt install python3-pyqt6
+pip3 install PySide6 
 ```
 ou
 ```
-pip3 install PyQt6
+pip3 install PySide6 --break-system-packages
 ```
 
 ### Installation du package w1thermsensor

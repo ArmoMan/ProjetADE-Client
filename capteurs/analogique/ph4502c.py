@@ -23,4 +23,4 @@ class Ph4502c(CapteurAnalogiqueParent):
         ph_obtenu = self._valeur_ph_neutre  + ((self._valeur_voltage_neutre - voltage_actuel)/abs(self._marge))
 
         # ajouter aux données
-        self._donnees.update({"Ph mesuré", ph_obtenu})
+        self._donnees["Ph mesuré"] = ph_obtenu

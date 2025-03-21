@@ -24,4 +24,4 @@ class DS18B20(CapteursParent):
     
     def mesurer_donnees(self):
         temp = self._capteur.get_temperature()
-        self._donnees.update({"Temperature (C)", temp})
+        self._donnees["Temperature (C)"] = temp

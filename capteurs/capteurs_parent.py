@@ -8,10 +8,14 @@ class CapteursParent(ABC):
         self._nom = nom
         self._donnees = donnees
         self._pin = pin
+        self._est_actionnable = False
     
     def get_nom(self) -> str:
-        return self._name
+        return self._nom
     
+    def get_est_actionnable(self) -> bool:
+         return self._est_actionnable
+     
     def get_donnees(self) -> dict:
         return self._donnees
     
