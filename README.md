@@ -57,6 +57,18 @@ ou
 pip3 install PySide6 --break-system-packages
 ```
 
+### Installation du package pour la communcation
+
+**Installez [SocketIO Client](https://python-socketio.readthedocs.io/en/stable/client.html#installation)**
+
+```
+pip install "python-socketio[client]"
+```
+ou
+```
+pip install "python-socketio[client]" --break-system-packages
+```
+
 ### Installation du package w1thermsensor
 
 Pour le capteur DS18B20, il faut faire des installations et ajustements

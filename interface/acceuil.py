@@ -2,7 +2,7 @@ import threading
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (QWidget,QApplication,QLineEdit, QVBoxLayout, QLabel, QCheckBox,QHBoxLayout,QPushButton,QMessageBox)
 from PySide6.QtGui import  QFont,QColor
-from controlleurs.application.application_controleur import ApplicationControleur
+from controlleurs.application.application_contoleur import ApplicationControleur
 from controlleurs.application.createur_capteurs import CreateurCapteur
 
 import sys
@@ -88,11 +88,8 @@ class Acceuil(QWidget):
         
         # commencer à prendre des mesures
         # pour ne pas faire freezer l'interfacem utiliser des threads
-        ApplicationControleur(self.choix_cpateurs.get_capteurs(), "ws://192.168.0.214:4545", cle_api)
-
-       
-
-
+        #sdefhjwgefdjwgefjwgef
+        ApplicationControleur(self.choix_cpateurs.get_capteurs(), "http://192.168.0.215:4545", cle_api)
 
     
     def __ajouter_capteurs_choisis(self):
