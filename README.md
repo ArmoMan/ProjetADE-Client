@@ -57,6 +57,17 @@ ou
 pip3 install PySide6 --break-system-packages
 ```
 
+### Pour le capteur DHT
+
+**Installez [Adafruit_CircuitPython_DHT](https://github.com/adafruit/Adafruit_CircuitPython_DHT)** avec la commande suivante :
+```
+pip3 install adafruit-circuitpython-dht
+```
+ou
+```
+pip3 install adafruit-circuitpython-dht --break-system-packages
+```
+
 ### Installation du package pour la communcation
 
 **Installez [SocketIO Client](https://python-socketio.readthedocs.io/en/stable/client.html#installation)**

@@ -13,15 +13,14 @@ class CapteurArduinoWaterSensor(CapteurAnalogiqueParent):
 
 
         
-   def mesurer_donnees(self):
+    def mesurer_donnees(self):
         voltage = self._controleur_adc.lire_voltage(self._pin)
-        
-        if voltage > self._valeur_max:
+        if voltage > self._voltage_max :
             pourcentage_immersion = 100.0
-        elif voltage < self._valeur_min:
+        elif voltage < self._voltage_min:
             pourcentage_immersion = 0.0
         else:
-            pourcentage_immersion = ((voltage - self._valeur_min) / (self._valeur_max - self._valeur_min)) * 100
+            pourcentage_immersion = ((voltage - self._voltage_min) / (self._voltage_max  - self._voltage_min)) * 100
         
         self._donnees["Niveau d'eau [%]"] = pourcentage_immersion
         
