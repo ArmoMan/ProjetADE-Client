@@ -5,6 +5,9 @@ from capteurs.numerique.actionnable.parent_controleur_gpio import ParentControle
 class RGBControleur(ParentControleurGPIO):
     def __init__(self, pin_rouge: int, pin_vert: int, pin_bleu: int):
         super().__init__("Lumière", "Électricité", {"pin_rouge": pin_rouge,"pin_vert": pin_vert,"pin_bleu": pin_bleu})
+
+        # pour commencer desactivé
+        self._desactiver()
         
     def mesurer_donnees(self):
         pass

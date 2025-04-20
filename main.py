@@ -4,7 +4,6 @@ import sys
 from controlleurs.application.createur_capteurs import CreateurCapteur
 from interface.acceuil import Acceuil
 
-
 app = QApplication(sys.argv)
 main_win = Acceuil()
 main_win.show()

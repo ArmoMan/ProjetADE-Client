@@ -6,7 +6,7 @@ from capteurs.numerique.actionnable.actionnable import Actionnable
 class ParentControleurGPIO(CapteursParent, Actionnable, ABC):
     def __init__(self, nom, nom_donnee, pins:dict[str, int]):
         """
-        Classe de base pour les actionneurs contrôlés par les pins GPIO
+        Classe de base pour les actionneurs contrôlés par les pins GPIO (out)
         """
         super().__init__(nom, {nom_donnee: 0}, pins)
         self._gpio_pins = pins
@@ -21,7 +21,7 @@ class ParentControleurGPIO(CapteursParent, Actionnable, ABC):
         for pin in self._gpio_pins.values():
             GPIO.setup(pin, GPIO.OUT)
 
-    def action(self, commande):
+    def action(self):
         """
         Méthode pour entâmer une action: eteindre ou allumer
         """

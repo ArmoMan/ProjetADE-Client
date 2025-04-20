@@ -1,34 +1,3 @@
-# import time
-# import platform
-# import Adafruit_DHT
-
-# from capteurs.capteurs_parent import CapteursParent
-
-# class DHTSensor(CapteursParent):
-#     """
-#     Classe pour un capteur d'humidité et de température (DHT22)
-#     """
-#     def __init__(self, sensor_type=Adafruit_DHT.DHT22, gpio_pin=22):
-#         super().__init__("DHT22", {}, gpio_pin)
-#         self.sensor_type = sensor_type
-#         self._gpio_pin = gpio_pin
-#         self._donnees = {}
-
-#     def mesurer_donnees(self):
-#         """
-#         Lit l'humidité et la température du capteur et met à jour le dictionnaire _donnees.
-#         """
-#         humidity, temperature = Adafruit_DHT.read_retry(self.sensor_type, self._gpio_pin)
-#         if humidity is not None and temperature is not None:
-#             self._donnees["Temperature (C)"] = temperature
-#             self._donnees["Humidite (%)"] = humidity
-#         else:
-#             self._donnees["Temperature (C)"] = None
-#             self._donnees["Humidite (%)"] = None
-
-#     def get_donnees(self):
-#         return self._donnees
-
 import time
 import board
 import adafruit_dht

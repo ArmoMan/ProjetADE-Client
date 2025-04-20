@@ -52,6 +52,22 @@ class Acceuil(QWidget):
             {
                 "checkbox":QCheckBox("ph4502c"),
                 "capteur": self.choix_cpateurs.generer_ph4502c
+            },
+            {
+                "checkbox":QCheckBox("dht11"),
+                "capteur": self.choix_cpateurs.generer_dht11
+            },
+            {
+                "checkbox":QCheckBox("pompe"),
+                "capteur": self.choix_cpateurs.generer_pompe
+            },
+            {
+                "checkbox":QCheckBox("eau mesure"),
+                "capteur": self.choix_cpateurs.generer_eau_mesure
+            },
+            {
+                "checkbox":QCheckBox("rgb lampe"),
+                "capteur": self.choix_cpateurs.generer_rgb
             }
         ]
         
@@ -89,7 +105,7 @@ class Acceuil(QWidget):
         # commencer à prendre des mesures
         # pour ne pas faire freezer l'interfacem utiliser des threads
         #sdefhjwgefdjwgefjwgef
-        ApplicationControleur(self.choix_cpateurs.get_capteurs(), "http://192.168.0.215:4545", cle_api)
+        ApplicationControleur(self.choix_cpateurs.get_capteurs(), "http://192.168.0.186:4545", cle_api)
 
     
     def __ajouter_capteurs_choisis(self):
