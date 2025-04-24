@@ -99,8 +99,8 @@ Le Raspberry Pi accepte uniquement des signaux de 3,3V maximum. **Une tension pl
 | Matériel | Image |
 |------|-------|
 | 1. **Ti-Cobbler Plus** est un accessoire essentiel pour ce projet. Il sert de rallonge pour accéder plus facilement aux broches GPIO et permet de voir clairement les numéros des broches auxquelles brancher les fils.| <img src="./images/Ti-Cobbler Plus.jpg" width="128"/>  |
-| 2. Des fils connecteurs |<img src="./images/KY-018.jpeg" width="128"/>  |
-| 3. Des séparateurs de fils** : Comme plusieurs capteurs peuvent être connectés aux mêmes broches, il est nécessaire d’utiliser des séparateurs pour pouvoir relier un même fil à plusieurs composants, et inversement. | <img src="./images/separateur.png" width="128"/> |
+| 2. **Des fils connecteurs** |<img src="./images/KY-018.jpeg" width="128"/>  |
+| 3. **Des séparateurs de fils** : Comme plusieurs capteurs peuvent être connectés aux mêmes broches, il est nécessaire d’utiliser des séparateurs pour pouvoir relier un même fil à plusieurs composants, et inversement. | <img src="./images/separateur.png" width="128"/> |
 
 ## Guide d’utilisation (Connexion des capteurs)
 
