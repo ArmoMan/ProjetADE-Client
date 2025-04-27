@@ -6,7 +6,7 @@ from capteurs.numerique.actionnable.actionnable import Actionnable
 class ParentControleurGPIO(CapteursParent, Actionnable, ABC):
     def __init__(self, nom, nom_donnee, pins:dict[str, int]):
         """
-        Classe de base pour les actionneurs contrôlés par les pins GPIO (out)
+        Classe de base pour les actionneurs contrôlés par les pins GPIO (out) et actionnable
         """
         super().__init__(nom, {nom_donnee: 0}, pins)
         self._gpio_pins = pins

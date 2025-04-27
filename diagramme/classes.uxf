@@ -1,0 +1,183 @@
+<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>2222</x><y>33</y><w>242</w><h>176</h></coordinates><panel_attributes>AcceuilGUI
+--
++ choix_cpateurs : CreateurCapteur
++ text_cle_api : QLabel
++ input_cle_api : QLineEdit
++ checkboxes : list
++ button_commencer : QPushButton
+--
++ __init__() : None
+- __commencer() : None
+- __ajouter_capteurs_choisis() : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2189</x><y>330</y><w>308</w><h>209</h></coordinates><panel_attributes>ApplicationControleur
+--
+- __cle_api: str
+- __url: str
+- __donees_pour_envoyer : dict[str, dict]
+- __capteurs_choisis: list[CapteursParent]
+- __gestionnaire_commandes: dict[str, Callable]
+- __ws: SocketIOClient
+--
++ sur_commande_recu(commande: dict) : Any
+- __actionner_capteur(commande: dict) : None
+- __envoyer_donnees(commande: dict) : dict
+- __prendre_donnees() : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2585</x><y>0</y><w>308</w><h>264</h></coordinates><panel_attributes>CreateurCapteur
+--
+- __capteurs : list[CapteursParent]
+- __est_capteurs_analogiques : bool
+- _analogique_contoleur : ADS1115Controleur
+--
++ __init__() : None
++ get_capteurs() : list[CapteursParent]
++ generer_ds18b20() : None
++ generer_ky18() : None
++ generer_ph4502c() : None
++ generer_dht11() : None
++ generer_eau_mesure() : None
++ generer_rgb() : None
++ generer_pompe() : None
+- __verifier_creation_adc() : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>726</x><y>979</y><w>352</w><h>121</h></coordinates><panel_attributes>ADS1115Controleur
+--
+- __i2c_communication : busio.I2C
+- __convertiseur : ADS.ADS1115
+--
++__init__() : None
++ lire_analogique(pin_analogique: PinAnalogique) : int
++ lire_voltage(pin_analogique: PinAnalogique) : float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>968</x><y>1155</y><w>110</w><h>132</h></coordinates><panel_attributes>« Enum » 
+PinAnalogique
+--
++ A0 : ADS.P0
++ A1 : ADS.P1
++ A2 : ADS.P2
++ A3 : ADS.P3
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2629</x><y>297</y><w>440</w><h>275</h></coordinates><panel_attributes>SocketIOClient
+--
+- __lien : str
+- __cle_api : str
+- __observateurs : list[ObservateurCommandes] 
++ sio: socketio.Client()
++ thread : threading.Thread
+--
++__init__( lien: str, cle_api: str) : None
++ ajouter_observateur(observateur: ObservateurCommandes) : None
++ commencer_connexion() : None
+- __connecter_serveur() : None
++ convertir_donnees(donnees_format_dict: dict) : str | bool
+
+(Event) connect()
+(Event) disconnect()
+(Event) on_commande(data: dict) : dict</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2178</x><y>671</y><w>330</w><h>209</h></coordinates><panel_attributes>« Abstract » 
+CapteursParent
+--
+# _nom : str
+# _donnees : dict
+# _pin : Any
+# _est_actionnable : bool
+--
++ get_nom() : str
++ get_est_actionnable() : bool
++ get_donnees() : dict
+/+ mesurer_donnees() : Any/
++ __init__(nom: str, donnees: dict, pin: Any) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1859</x><y>33</y><w>264</w><h>88</h></coordinates><panel_attributes>« Interface » 
+ObservateurCommandes
+--
+
+--
+/+ sur_commande_recu(commande: dict)/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1254</x><y>1111</y><w>704</w><h>99</h></coordinates><panel_attributes>« Abstract » 
+CapteurAnalogiqueParent
+--
+# _controleur_adc : ADS1115Controleur
+--
++ __init__(nom: str, donnees: dict, controleur_adc: ADS1115Controleur, pin_analogique: PinAnalogique) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>825</x><y>1452</y><w>649</w><h>143</h></coordinates><panel_attributes>Ph4502c
+--
+- __voltage_max : float
+- __valeur_ph_neutre : float
+- __valeur_voltage_neutre : float
+- __marge : float
+--
++ __init__( controleur_adc: ADS1115Controleur, pin_analogique: PinAnalogique , marge: float): None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>1452</y><w>726</w><h>121</h></coordinates><panel_attributes>CapteurKY18
+--
+- __voltage_max : float
+- __resistance_interne : float
+--
+ + __init__( controleur_adc: ADS1115Controleur, pin_analogique: PinAnalogique, resistance_interne: float): None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1617</x><y>1430</y><w>781</w><h>110</h></coordinates><panel_attributes>CapteurArduinoWaterSensor
+--
+- __voltage_max : float
+- __voltage_min : float
+--
++ __init__( controleur_adc: ADS1115Controleur, pin_analogique: PinAnalogique, voltage_max: float, voltage_min: float): None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2937</x><y>1188</y><w>220</w><h>99</h></coordinates><panel_attributes>DS18B20
+--
+- __capteur : W1ThermSensor
+--
++ __init__() : None
++ set_pin(pin: int) : None
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2607</x><y>1188</y><w>220</w><h>110</h></coordinates><panel_attributes>DHT11
+--
+- __capteur : adafruit_dht.DHT11
+--
++ __init__(pin: board.Pin) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>3586</x><y>847</y><w>187</w><h>121</h></coordinates><panel_attributes>« Interface » 
+Actionnable
+--
+
+--
++ action(commande) : None
+# _activer() : None
+# _desactiver() : None
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>3278</x><y>1188</y><w>352</w><h>121</h></coordinates><panel_attributes>« Abstract » 
+ParentControleurGPIO
+--
+# _gpio_pins : dict[str, int]
+--
++ __init__( nom, nom_donnee, pins:dict[str, int]) : None
+- __configurer_pins() : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>3245</x><y>1551</y><w>407</w><h>99</h></coordinates><panel_attributes>RGBControleur
+--
+
+--
++ __init__(self, pin_rouge: int, pin_vert: int, pin_bleu: int) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>3740</x><y>1551</y><w>451</w><h>88</h></coordinates><panel_attributes>PompeControleur
+--
+- __pwm_pin : GPIO.PWM(pin_enable, 1000)
+--
++ __init__(self, pin_input_1: int, pin_input_2: int, pin_enable: int ) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>3487</x><y>176</y><w>715</w><h>110</h></coordinates><panel_attributes>CalibrerEau
+--
+- __taille_echantillon : int
+- __ads1115_controleur : ADS1115Controleur
+- __pin_analogique : PinAnalogique
+--
++ __init__(ads1115_controleur: ADS1115Controleur, pin_analogique: PinAnalogique, taille_echantillon: int) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>3487</x><y>330</y><w>1001</w><h>187</h></coordinates><panel_attributes>CalibrerPh
+--
+- __taille_echantillon : int
+- __ads1115_controleur : ADS1115Controleur
+- __pin_analogique : PinAnalogique
+- __valeur_ph_acide : float
+- __valeur_ph_basique : float
+- __valeur_ph_neutre : float
+- __valeur_voltage_neutre : float
+--
++ __init__(ads1115_controleur: ADS1115Controleur, pin_analogique: PinAnalogique, taille_echantillon: int, valeur_ph_acide: float, valeur_ph_basique: float) : None
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>3487</x><y>55</y><w>187</w><h>77</h></coordinates><panel_attributes>Pour ajuster les capteurs
+bg=red</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2332</x><y>198</y><w>33</w><h>154</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>2453</x><y>110</y><w>154</w><h>33</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>2486</x><y>429</y><w>165</w><h>33</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>130;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>2321</x><y>528</y><w>33</w><h>165</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1969</x><y>110</y><w>396</w><h>242</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;140;340;140;340;200</additional_attributes></element><element><id>Relation</id><coordinates><x>1584</x><y>869</y><w>781</w><h>264</h></coordinates><panel_attributes>lt=&lt;&lt;-
+fg=green</panel_attributes><additional_attributes>690;10;690;150;10;150;10;220</additional_attributes></element><element><id>Relation</id><coordinates><x>1584</x><y>1199</y><w>451</w><h>253</h></coordinates><panel_attributes>lt=&lt;&lt;-
+fg=green</panel_attributes><additional_attributes>10;10;10;140;390;140;390;210</additional_attributes></element><element><id>Relation</id><coordinates><x>1133</x><y>1199</y><w>484</w><h>275</h></coordinates><panel_attributes>lt=&lt;&lt;-
+fg=green</panel_attributes><additional_attributes>420;10;420;140;10;140;10;230</additional_attributes></element><element><id>Relation</id><coordinates><x>352</x><y>1199</y><w>1265</w><h>275</h></coordinates><panel_attributes>lt=&lt;&lt;-
+fg=green</panel_attributes><additional_attributes>1130;10;1130;140;10;140;10;230</additional_attributes></element><element><id>Relation</id><coordinates><x>1067</x><y>1023</y><w>209</w><h>165</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>170;130;90;130;90;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1067</x><y>1155</y><w>209</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>170;10;90;10;90;60;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>3432</x><y>1298</y><w>33</w><h>275</h></coordinates><panel_attributes>lt=&lt;&lt;-
+fg=blue</panel_attributes><additional_attributes>10;10;10;230</additional_attributes></element><element><id>Relation</id><coordinates><x>3432</x><y>1298</y><w>550</w><h>275</h></coordinates><panel_attributes>lt=&lt;&lt;-
+fg=blue</panel_attributes><additional_attributes>10;10;10;140;480;140;480;230</additional_attributes></element><element><id>Relation</id><coordinates><x>2332</x><y>869</y><w>407</w><h>341</h></coordinates><panel_attributes>lt=&lt;&lt;-
+fg=blue</panel_attributes><additional_attributes>10;10;10;150;350;150;350;290</additional_attributes></element><element><id>Relation</id><coordinates><x>2332</x><y>869</y><w>737</w><h>341</h></coordinates><panel_attributes>lt=&lt;&lt;-
+fg=blue</panel_attributes><additional_attributes>10;10;10;150;650;150;650;290</additional_attributes></element><element><id>Relation</id><coordinates><x>2332</x><y>869</y><w>1144</w><h>341</h></coordinates><panel_attributes>lt=&lt;&lt;-
+fg=blue</panel_attributes><additional_attributes>10;10;10;150;1020;150;1020;290</additional_attributes></element><element><id>UMLNote</id><coordinates><x>2519</x><y>946</y><w>154</w><h>77</h></coordinates><panel_attributes>Numérique
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>2024</x><y>946</y><w>154</w><h>77</h></coordinates><panel_attributes>Analogique
+bg=green
+fg=black</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2332</x><y>869</y><w>33</w><h>187</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>3443</x><y>957</y><w>253</w><h>253</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>210;10;210;120;10;120;10;210</additional_attributes></element><element><id>Text</id><coordinates><x>2464</x><y>99</y><w>55</w><h>44</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>2552</x><y>99</y><w>55</w><h>44</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>2321</x><y>209</y><w>55</w><h>44</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>2321</x><y>297</y><w>55</w><h>44</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>2497</x><y>418</y><w>55</w><h>44</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>2596</x><y>418</y><w>55</w><h>44</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>1925</x><y>99</y><w>55</w><h>44</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>2332</x><y>539</y><w>55</w><h>44</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>2332</x><y>627</y><w>55</w><h>44</h></coordinates><panel_attributes>0..n
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>1232</x><y>1133</y><w>55</w><h>44</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>1078</x><y>1012</y><w>55</w><h>44</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>1078</x><y>1199</y><w>55</w><h>44</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element></diagram>

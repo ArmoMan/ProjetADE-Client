@@ -22,7 +22,7 @@ class DHT11(CapteursParent):
         super().__init__("DHT11", {}, pin)
         
         # Création de l'instance du capteur DHT11 à l'aide de la bibliothèque adafruit_dht.
-        self._capteur = adafruit_dht.DHT11(pin)
+        self.__capteur = adafruit_dht.DHT11(pin)
     
     def mesurer_donnees(self):
         """
@@ -34,8 +34,8 @@ class DHT11(CapteursParent):
         """
         try:
             # Récupération des mesures du capteur.
-            temperature = self._capteur.temperature
-            humidity = self._capteur.humidity
+            temperature = self.__capteur.temperature
+            humidity = self.__capteur.humidity
             
             # Mise à jour des données mesurées dans le dictionnaire.
             self._donnees["Temperature (C)"] = temperature
