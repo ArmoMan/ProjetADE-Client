@@ -28,7 +28,7 @@ class CreateurCapteur:
     
     def generer_ky18(self):
         self.__verifier_creation_adc()
-        self.__capteurs.append(CapteurKY18(self._analogique_contoleur, PinAnalogique.A0))
+        self.__capteurs.append(CapteurKY18(self._analogique_contoleur, PinAnalogique.A0,10000))
     
     def generer_ph4502c(self):
         self.__verifier_creation_adc()

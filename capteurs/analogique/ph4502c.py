@@ -7,10 +7,10 @@ from controlleurs.composants.adc.pin_analogique import PinAnalogique
 class Ph4502c(CapteurAnalogiqueParent):
     def __init__(self, controleur_adc: ADS1115Controleur, pin_analogique: PinAnalogique , marge: float):
         super().__init__("Ph4502c", {}, controleur_adc, pin_analogique)
-        self._voltage_max = 5
-        self._valeur_ph_neutre = 7
-        self._valeur_voltage_neutre = 2.5275
-        self._marge = marge
+        self.__voltage_max = 5
+        self.__valeur_ph_neutre = 7
+        self.__valeur_voltage_neutre = 2.5275
+        self.__marge = marge
         
     def mesurer_donnees(self):
         """
@@ -20,7 +20,7 @@ class Ph4502c(CapteurAnalogiqueParent):
         
         # equation 
         voltage_actuel = self._controleur_adc.lire_voltage(self._pin)
-        ph_obtenu = self._valeur_ph_neutre  + ((self._valeur_voltage_neutre - voltage_actuel)/abs(self._marge))
+        ph_obtenu = self.__valeur_ph_neutre  + ((self.__valeur_voltage_neutre - voltage_actuel)/abs(self.__marge))
 
         # ajouter aux données
         self._donnees["PH mesuré"] = ph_obtenu

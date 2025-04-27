@@ -33,7 +33,7 @@ class CalibrerPh:
         """
         
         print("Avant d'appeler cette méthode, veuillez avoir effectué la calibration manuelle, ainsi qu'avoir déjà préparé les deux solutions de pH et l'eau pour le nettoyage.")
-        
+        print("Voici un tutoriel pour faire la calibration manuelle avant de commencer (il faut 2,5275 V) : https://raaflahar.medium.com/ph-4502c-sensor-diymore-how-to-use-and-calibrate-using-arduino-uno-r3-3afc2b96631")        
         # dictonnaire des voltage des 2 solutions de ph
         dict_voltage = {}
         

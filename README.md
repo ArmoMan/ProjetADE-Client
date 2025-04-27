@@ -44,6 +44,29 @@ La deuxième partie est ce dépôt, qui est destiné à la partie "physique du p
 4. Restaurants et chefs cuisiniers : Ils pourraient cultiver des aliments frais directement sur place, réduisant ainsi les coûts de production et de transport. Cela pourrait également améliorer la qualité et la traçabilité des aliments.
 5. Communautés et ONG : Elles pourraient utiliser le système dans des projets humanitaires pour assurer la sécurité alimentaire dans des milieux où l’accès à l’eau est limité et améliorer l’autosuffisance des fermes communautaires.
 
+## Guide d’utilisation (Connexion des capteurs)
+
+1) Tout d’abord, il faut installer **VSCode** et **Python** sur votre Raspberry Pi. Ensuite, installez les librairies et faites les configurations nécessaires en suivant **cette étape :** [Installation et mise en place](#installation-de-python-et-pip). 
+
+2) Une fois les installations effectuées, suivez le [**schéma dans le PDF**](#schéma-de-montage) pour connecter les [capteurs](#matériel-nécessaire). Assurez-vous de connecter les composants et les capteurs aux bons pins. Si vous voulez modifier les pins, assurez-vous qu’ils soient compatibles avec le capteur. Une fois ce choix fait, **modifiez les pins dans la classe `CreateurCapteur`, et pour le DS18B20, dans sa propre classe**.
+
+3) **Note** : si certains capteurs nécessitent une **calibration**, utilisez les classes dans le dossier `calibrer` pour obtenir les données nécessaires à intégrer dans `CreateurCapteur`. Exécutez le fichier `calibrage.py`, où des exemples de calibrations sont déjà présents.
+
+4) Une fois les étapes 1, 2, 3 terminées, allez dans le dossier `interface`, puis dans la classe `Accueil`. **Assurez-vous que la connexion socketIO se fait à la bonne adresse :** `ApplicationControleur(self.choix_cpateurs.get_capteurs(), "http://192.168.0.186:4545", cle_api)`  
+Modifiez l’adresse si nécessaire.
+
+5) Allez dans `main.py` et exécutez le fichier.
+
+6) Choisissez les capteurs connectés.
+
+7) Entrez la clé API.
+> [!NOTE]  
+> Assurez-vous d’avoir créé un compte sur le site du Projet ADE et d’avoir récupéré votre clé dans l’onglet "Voir clé API" du site.
+
+8) Appuyez sur **Commencer**.  
+> [!WARNING]  
+> Assurez-vous que le site du Projet ADE est bien en ligne avant de démarrer.
+
 ## Matériel nécessaire
 
 ### Composants obligatoires
@@ -102,53 +125,39 @@ Le Raspberry Pi accepte uniquement des signaux de 3,3V maximum. **Une tension pl
 | 2. **Des fils connecteurs** |<img src="./images/KY-018.jpeg" width="128"/>  |
 | 3. **Des séparateurs de fils** : Comme plusieurs capteurs peuvent être connectés aux mêmes broches, il est nécessaire d’utiliser des séparateurs pour pouvoir relier un même fil à plusieurs composants, et inversement. | <img src="./images/separateur.png" width="128"/> |
 
-## Guide d’utilisation (Connexion des capteurs)
+## Schéma de montage
+#### Voici le schéma de montage:
+Pour plus de détails, consultez ce [PDF](./pdf/schema-github.pdf).
+![Schéma de montage](./images/schema-github.png)
 
-1) Tout d’abord, il faut installer **VSCode** et **Python** sur votre Raspberry Pi. Ensuite, installez les librairies et faites les configurations nécessaires en suivant **cette étape :** [Installation et mise en place](#installation-de-python-et-pip). 
+## Diagramme de classes
+Pour plus de détails, consultez ce [PDF](./pdf/pre-final.pdf).
+![Diagramme de classes](./images/classes.png)
 
-2) Une fois les installations effectuées, suivez le **schéma dans le PDF** pour connecter les capteurs. Assurez-vous de connecter les composants et les capteurs aux bons pins. Si vous voulez modifier les pins, assurez-vous qu’ils soient compatibles avec le capteur. Une fois ce choix fait, **modifiez les pins dans la classe `CreateurCapteur`, et pour le DS18B20, dans sa propre classe**.
+### Informations additionnelles sur la structure des dossiers
 
-3) **Note** : si certains capteurs nécessitent une **calibration**, utilisez les classes dans le dossier `calibrer` pour obtenir les données nécessaires à intégrer dans `CreateurCapteur`. Exécutez le fichier `calibrage.py`, où des exemples de calibrations sont déjà présents.
-
-4) Une fois les étapes 1, 2, 3 terminées, allez dans le dossier `interface`, puis dans la classe `Accueil`. **Assurez-vous que la connexion socketIO se fait à la bonne adresse :** `ApplicationControleur(self.choix_cpateurs.get_capteurs(), "http://192.168.0.186:4545", cle_api)`  
-Modifiez l’adresse si nécessaire.
-
-5) Allez dans `main.py` et exécutez le fichier.
-
-6) Choisissez les capteurs connectés.
-
-7) Entrez la clé API.
-> [!NOTE]  
-> Assurez-vous d’avoir créé un compte sur le site du Projet ADE et d’avoir récupéré votre clé dans l’onglet "Voir clé API" du site.
-
-8) Appuyez sur **Commencer**.  
-> [!WARNING]  
-> Assurez-vous que le site du Projet ADE est bien en ligne avant de démarrer.
-
-## Informations additionnelles sur la structure des dossiers
-
-### `calibrer`
+#### `calibrer`
 Contient les classes pour calibrer les capteurs. Elles retournent les chiffres nécessaires aux classes principales pour afficher les bons résultats. À utiliser uniquement dans `calibrage.py`.
 
-### `capteurs`
+#### `capteurs`
 Contient les classes des capteurs.  
 Voici les sous-dossiers :
 - `analogique` : Capteurs analogiques.  
 - `numérique` : Capteurs numériques.  
 - `actionnable` : Capteurs analogiques contrôlables.
 
-### `communication`
+#### `communication`
 Contient les classes qui permettent d’établir une connexion entre le Raspberry Pi et le site du Projet ADE.
 
-### `controlleurs`
+#### `controlleurs`
 Voici les sous-dossiers :
 - `application` : Contient la classe principale qui contrôle toute la logique de l’application.
 - `composants` : Contient les classes et dossiers des composants autres que les capteurs, comme par exemple les convertisseurs analogiques.
 
-### `interface`
+#### `interface`
 Contient les classes de l’interface graphique.
 
-### `main.py`
+#### `main.py`
 Point d’entrée de l’application. C’est le fichier à exécuter pour démarrer le système.
 
 ## Questions Et Réponses

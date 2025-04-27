@@ -20,8 +20,11 @@ class DS18B20(CapteursParent):
     """
     def __init__(self):
         super().__init__("DS18B20", {}, 4)
-        self._capteur = W1ThermSensor()
+        self.__capteur = W1ThermSensor()
     
     def mesurer_donnees(self):
-        temp = self._capteur.get_temperature()
+        temp = self.__capteur.get_temperature()
         self._donnees["Temperature (C)"] = temp
+    
+    def set_pin(self, pin: int):
+        self._pin = pin

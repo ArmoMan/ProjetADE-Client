@@ -12,7 +12,7 @@ class ADS1115Controleur:
     """
     
     def __init__(self):
-        # mettre en place le type de communication -> esclave & maitre
+        # mettre en place le type de communication : esclave & maitre
         self.__i2c_communication = busio.I2C(board.SCL, board.SDA)
         
         # ajouter cette type de communication au convertiseur voulu (pour nous c'est le ADS1115)
