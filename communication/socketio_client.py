@@ -49,7 +49,20 @@ class SocketIOClient:
         
     def __connecter_serveur(self):
         print(self.__lien)
-        self.sio.connect(self.__lien, headers={"cle_api": self.__cle_api})
+        print(self.__cle_api)
+        """ 
+        Ancienne option de connexion avec les headers. Avec Cloudflare et Nginx, cela ne fonctionne plus.  
+        Si vous voulez l’utiliser en local (localhost), c’est possible,  
+        mais vous devrez aussi modifier du code dans le contrôleur SocketIO du serveur Node.js.
+        """
+        # self.sio.connect(self.__lien, headers={"cle_api": self.__cle_api})
+        
+        """
+        Nouvelle façon de transmettre la clé api (directement dans l'url).
+        """
+        url=f"{self.__lien}?cle_api={self.__cle_api}"
+        self.sio.connect(url)
+        
         self.sio.wait()    
         
     def commencer_connexion(self):
