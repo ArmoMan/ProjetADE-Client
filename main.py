@@ -8,11 +8,3 @@ app = QApplication(sys.argv)
 main_win = AcceuilGUI()
 main_win.show()
 sys.exit(app.exec())
-
-# x = CreateurCapteur()
-# x.generer_ky18()
-# li = x.get_capteurs()
-# for lis in li:
-#     lis.mesurer_donnees()
-# for lit in li:
-#     print(lit.get_donnees())

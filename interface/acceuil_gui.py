@@ -104,8 +104,14 @@ class AcceuilGUI(QWidget):
         
         # commencer à prendre des mesures
         # pour ne pas faire freezer l'interfacem utiliser des threads
-        #sdefhjwgefdjwgefjwgef
-        ApplicationControleur(self.choix_cpateurs.get_capteurs(), "http://192.168.0.186:4545", cle_api)
+        
+        # Soit vous vous connectez en local (localhost) à votre serveur.  Exemple:
+        # ApplicationControleur(self.choix_capteurs.get_capteurs(), "http://192.343.0.121:4545", cle_api)  
+
+        # Ou, option 2 : vous vous connectez à notre serveur ProjetADE.
+        ApplicationControleur(self.choix_capteurs.get_capteurs(), "https://projetadeclient.armoman.net", cle_api)
+
+
 
     
     def __ajouter_capteurs_choisis(self):

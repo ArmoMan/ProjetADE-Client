@@ -52,7 +52,7 @@ La deuxième partie est ce dépôt, qui est destiné à la partie "physique du p
 
 3) **Note** : si certains capteurs nécessitent une **calibration**, utilisez les classes dans le dossier `calibrer` pour obtenir les données nécessaires à intégrer dans `CreateurCapteur`. Exécutez le fichier `calibrage.py`, où des exemples de calibrations sont déjà présents.
 
-4) Une fois les étapes 1, 2, 3 terminées, allez dans le dossier `interface`, puis dans la classe `Accueil`. **Assurez-vous que la connexion socketIO se fait à la bonne adresse :** `ApplicationControleur(self.choix_cpateurs.get_capteurs(), "http://192.168.0.186:4545", cle_api)`  
+4) Une fois les étapes 1, 2, 3 terminées, allez dans le dossier `interface`, puis dans la classe `Accueil`. **Assurez-vous que la connexion socketIO se fait à la bonne adresse :** `ApplicationControleur(self.choix_capteurs.get_capteurs(), "https://projetadeclient.armoman.net", cle_api)` ou pour local: `ApplicationControleur(self.choix_cpateurs.get_capteurs(), "http://192.232.0.122:4545", cle_api)`
 Modifiez l’adresse si nécessaire.
 
 5) Allez dans `main.py` et exécutez le fichier.
